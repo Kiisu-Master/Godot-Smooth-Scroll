@@ -54,7 +54,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _process(delta: float) -> void:
-	if _needed_scroll.length() < 0.01:  # Dont always process, to save cpu.
+	if _needed_scroll.length_squared() < 0.01:  # Dont always process, to save cpu.
 		return
 	
 	var event := _last_event.duplicate()  # Copy properties of last scroll event.
