@@ -1,5 +1,5 @@
 # Usage
-The `SmoothScroll` node should be added to the root window. It will act on all `Control` nodes that are scrollabe and make use of the event `factor`.
+The `SmoothScroll` node should be added to the root window. It will act on all `Control` nodes that are scrollable and make use of the event `factor`.
 It might only work on one window at a time.
 # Explanation
 This addon enables smooth scrolling by interecpting non-smooth scroll events and turning them into smooth ones.
