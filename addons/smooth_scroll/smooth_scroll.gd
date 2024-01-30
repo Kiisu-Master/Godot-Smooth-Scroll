@@ -5,13 +5,15 @@ class_name SmoothScroll extends Control
 
 ## The higher the scroll speed, the faster scrolling will happen.
 var scroll_speed: float = 20.0
-## How much to jump forward. The actual default would be 1.
-var scroll_step: float = .5
+## How much to jump forward.
+var scroll_step: float = 1.0
 
 var _last_pos: Vector2  # The last known mouse position.
 var _last_pos_glob: Vector2
 var _needed_scroll: Vector2  # The scroll amount.
 var _last_event: InputEventMouseButton  # Last event to copy properties from.
+
+@onready var _window := get_window()
 
 
 func _ready() -> void:
@@ -23,11 +25,10 @@ func _input(event: InputEvent) -> void:
 		_last_pos = event.position  # Update position if mouse moves.
 		_last_pos_glob = event.global_position  # Just in case.
 	
-	
 	elif event is InputEventMouseButton:
 		
 		# Only intercept scrolling events.
-		if not event.button_index in \
+		if not event.pressed or not event.button_index in \
 			[MOUSE_BUTTON_WHEEL_DOWN, MOUSE_BUTTON_WHEEL_UP,
 			MOUSE_BUTTON_WHEEL_RIGHT, MOUSE_BUTTON_WHEEL_LEFT]:
 				return
@@ -54,51 +55,50 @@ func _input(event: InputEvent) -> void:
 
 
 func _process(delta: float) -> void:
-	if _needed_scroll.length_squared() < 0.01:  # Dont always process, to save cpu.
+	if _needed_scroll.length_squared() < 0.001:  # Dont always process, to save cpu.
 		return
 	
-	var event := _last_event.duplicate()  # Copy properties of last scroll event.
+	var event := _last_event  # Copy properties of last scroll event.
 	
 	# Calculate distance to scroll on this frame.
-	var dist_y: float = abs(_needed_scroll.y * delta * scroll_speed)
-	var dist_x: float = abs(_needed_scroll.x * delta * scroll_speed)
+	var dist: Vector2 = _needed_scroll * min(delta * scroll_speed, 1.0)
+	var abs_dist := dist.abs()
 	
 	# Determine direction.
-	if dist_y > dist_x:  # Vertical scroll.
-		if _needed_scroll.y > 0:
+	if abs_dist.x < abs_dist.y:  # Vertical scroll.
+		
+		if dist.y > 0:
 			event.button_index = MOUSE_BUTTON_WHEEL_DOWN
-			event.button_mask = 16  # Magic mask value found in actual scrollwheel input event.
-			_needed_scroll.y -= dist_y  # Decrease needed scroll amount by the amount scrolled.
-			_needed_scroll.y = max(_needed_scroll.y, 0)  # Prevent overshoot on low framerate.
-		elif _needed_scroll.y < 0:
+			event.button_mask = 0b10000  # Magic mask value found in actual scrollwheel input event.
+		else:
 			event.button_index = MOUSE_BUTTON_WHEEL_UP
-			event.button_mask = 8
-			_needed_scroll.y += dist_y
-			_needed_scroll.y = min(_needed_scroll.y, 0)
-		event.factor = dist_y
+			event.button_mask = 0b01000
+		
+		_needed_scroll.y -= dist.y  # Decrease needed scroll amount by the amount scrolled.
+		event.factor = abs_dist.y
+	
 	else:  # Horizontal scroll.
-		if _needed_scroll.x > 0:
+		
+		if dist.x > 0:
 			event.button_index = MOUSE_BUTTON_WHEEL_RIGHT
-			event.button_mask = 16
-			_needed_scroll.x -= dist_x
-			_needed_scroll.x = max(_needed_scroll.x, 0)
-		elif _needed_scroll.x < 0:
+			event.button_mask = 0b10000  # 16
+		else:
 			event.button_index = MOUSE_BUTTON_WHEEL_LEFT
-			event.button_mask = 8
-			_needed_scroll.x += dist_x
-			_needed_scroll.x = min(_needed_scroll.x, 0)
-		event.factor = dist_x
+			event.button_mask = 0b01000  # 8
+		
+		_needed_scroll.x -= dist.x
+		event.factor = abs_dist.x
 	
 	# Apply common data to event.
-	event.position = _last_pos
+	event.position = _last_pos * _window.content_scale_factor
 	event.global_position = _last_pos_glob
-	event.pressed = true
 	
 	# Send fake input event with factor.
 	Input.parse_input_event(event)
 	
+	event = event.duplicate()  # This is the most expensive thing. ( 3/4 of the computation time)
+	
 	# Disable pressed state.
-	event = event.duplicate()
 	event.button_mask = 0
 	event.pressed = false
 	Input.parse_input_event(event)
