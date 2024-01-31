@@ -61,7 +61,7 @@ func _process(delta: float) -> void:
 	var event := _last_event  # Copy properties of last scroll event.
 	
 	# Calculate distance to scroll on this frame.
-	var dist: Vector2 = _needed_scroll * min(delta * scroll_speed, 1.0)
+	var dist: Vector2 = _needed_scroll * min(delta * scroll_speed, 0.99)  # Limit to 0.99 to prevent overshoot and infinite feedback on low FPS.
 	var abs_dist := dist.abs()
 	
 	# Determine direction.
