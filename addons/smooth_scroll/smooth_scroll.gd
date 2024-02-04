@@ -91,7 +91,7 @@ func _process(delta: float) -> void:
 		_needed_scroll.x -= dist.x
 		event.factor = abs_dist.x
 	
-	# Apply common data to event.
+	# Apply position data to event.
 	event.position = _last_pos * _window.content_scale_factor
 	event.global_position = _last_pos_global
 	
