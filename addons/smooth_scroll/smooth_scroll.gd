@@ -4,7 +4,7 @@ class_name SmoothScroll extends Control
 
 
 ## Controls how fast the smoothing animation is.
-@export var scroll_speed: float = 10.0
+@export var scroll_speed: float = 20.0
 ## Controls how big of a step single scroll will move.
 @export var scroll_step: float = 1.0
 
