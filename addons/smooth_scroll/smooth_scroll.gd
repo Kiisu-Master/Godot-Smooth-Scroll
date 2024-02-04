@@ -64,28 +64,26 @@ func _process(delta: float) -> void:
 	var dist: Vector2 = _needed_scroll * min(delta * scroll_speed, 0.99)  # Limit to 0.99 to prevent overshoot and infinite feedback on low FPS.
 	var abs_dist := dist.abs()
 	
+	# Clear scroll buttons from mask.
+	event.button_mask &= ~0b1111000  # from 8 to 64
+	
 	# Determine direction.
 	if abs_dist.x < abs_dist.y:  # Vertical scroll.
-		
 		if dist.y > 0:
 			event.button_index = MOUSE_BUTTON_WHEEL_DOWN
-			event.button_mask = 0b10000  # Magic mask value found in actual scrollwheel input event.
+			event.button_mask |= 0b0010000  # 16
 		else:
 			event.button_index = MOUSE_BUTTON_WHEEL_UP
-			event.button_mask = 0b01000
-		
+			event.button_mask |= 0b0001000  # 8
 		_needed_scroll.y -= dist.y  # Decrease needed scroll amount by the amount scrolled.
 		event.factor = abs_dist.y
-	
 	else:  # Horizontal scroll.
-		
 		if dist.x > 0:
 			event.button_index = MOUSE_BUTTON_WHEEL_RIGHT
-			event.button_mask = 0b10000  # 16
+			event.button_mask |= 0b1000000  # 64
 		else:
 			event.button_index = MOUSE_BUTTON_WHEEL_LEFT
-			event.button_mask = 0b01000  # 8
-		
+			event.button_mask |= 0b0100000  # 32
 		_needed_scroll.x -= dist.x
 		event.factor = abs_dist.x
 	
@@ -99,6 +97,6 @@ func _process(delta: float) -> void:
 	event = event.duplicate()  # This is the most expensive thing. ( 3/4 of the computation time)
 	
 	# Disable pressed state.
-	event.button_mask = 0
+	event.button_mask &= ~0b1111000
 	event.pressed = false
 	Input.parse_input_event(event)
