@@ -87,6 +87,7 @@ func _process(delta: float) -> void:
 		else:
 			event.button_index = MOUSE_BUTTON_WHEEL_LEFT
 			event.button_mask |= 0b0100000  # 32
+		
 		_needed_scroll.x -= dist.x
 		event.factor = abs_dist.x
 	
