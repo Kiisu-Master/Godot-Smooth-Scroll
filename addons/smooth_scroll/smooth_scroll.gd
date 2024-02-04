@@ -4,9 +4,9 @@ class_name SmoothScroll extends Control
 
 
 ## The higher the scroll speed, the faster scrolling will happen.
-var scroll_speed: float = 20.0
+@export var scroll_speed: float = 20.0
 ## How much to jump forward.
-var scroll_step: float = 1.0
+@export var scroll_step: float = 1.0
 
 var _last_pos: Vector2  # The last known mouse position.
 var _last_pos_glob: Vector2
