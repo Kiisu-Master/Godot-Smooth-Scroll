@@ -3,14 +3,16 @@
 class_name SmoothScroll extends Control
 
 
-## The higher the scroll speed, the faster scrolling will happen.
-@export var scroll_speed: float = 20.0
-## How much to jump forward.
+## Controls how fast the smoothing animation is.
+@export var scroll_speed: float = 10.0
+## Controls how big of a step single scroll will move.
 @export var scroll_step: float = 1.0
 
-var _last_pos: Vector2  # The last known mouse position.
+# The last known mouse position.
+var _last_pos: Vector2
 var _last_pos_global: Vector2
-var _needed_scroll: Vector2  # The scroll amount.
+
+var _needed_scroll: Vector2  # The amount that hasn't been scrolled yet.
 var _last_event: InputEventMouseButton  # Last event to copy properties from.
 
 @onready var _window := get_window()
