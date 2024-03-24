@@ -11,17 +11,22 @@ config_version=5
 [application]
 
 config/name="Smooth Scroll"
+run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
+run/low_processor_mode=true
 
 [autoload]
 
-GoodScroll="res://addons/smooth_scroll/smooth_scroll.gd"
+SmoothScrollEnabler="*res://addons/smooth_scroll/smooth_scroll.gd"
 
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/smooth_scroll/plugin.cfg")
 
+[gui]
+
+theme/custom="res://theme.tres"
+
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

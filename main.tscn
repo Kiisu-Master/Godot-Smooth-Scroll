@@ -1,0 +1,102 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhptraj02b4ou"]
+
+[ext_resource type="Script" path="res://addons/smooth_scroll/smooth_scroll_ignore.gd" id="1_yni6y"]
+
+[node name="Main" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "Smooth"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Me rum Yellow Jack lee hardtack fire in the hole gibbet bilge rat sloop pirate. Keel cackle fruit Yellow Jack transom careen strike colors walk the plank Chain Shot boom bring a spring upon her cable. Matey aye Jolly Roger quarter rigging draught gangway swing the lead Letter of Marque fathom.
+
+Sutler grapple salmagundi Buccaneer lee lad fire ship gangway driver fluke. Jack Tar hogshead broadside brig transom lad code of conduct boatswain loot nipper. Avast Arr black spot draft fathom crimp skysail sutler cutlass Privateer.
+
+Heave to bring a spring upon her cable holystone furl hail-shot jib tack man-of-war topsail mizzenmast. Avast rutters driver swab belaying pin yawl crow's nest brigantine run a shot across the bow lookout. Bilge Buccaneer rutters starboard Nelsons folly six pounders Admiral of the Black driver cutlass shrouds.
+
+Log Sea Legs reef sails fore lee ahoy Gold Road ballast nipperkin barkadeer. Knave doubloon rutters heave to Sea Legs rope's end lass gangway salmagundi trysail. Deadlights quarter marooned take a caulk topmast execution dock hogshead lass Barbary Coast clap of thunder.
+
+Weigh anchor provost belaying pin reef sails clap of thunder snow skysail topgallant spirits Yellow Jack. Belay Sea Legs main sheet snow scuppers Shiver me timbers jolly boat sutler keelhaul spike. League swab keelhaul Sea Legs crow's nest hulk hang the jib doubloon weigh anchor Privateer.
+
+Gally log fire ship careen bilged on her anchor hearties dance the hempen jig Sink me landlubber or just lubber mizzenmast. Scourge of the seven seas spanker hardtack loaded to the gunwalls warp Brethren of the Coast quarterdeck bilge water bowsprit mizzenmast. Black spot ye lookout overhaul reef square-rigged rope's end spike ho avast.Me rum Yellow Jack lee hardtack fire in the hole gibbet bilge rat sloop pirate. Keel cackle fruit Yellow Jack transom careen strike colors walk the plank Chain Shot boom bring a spring upon her cable. Matey aye Jolly Roger quarter rigging draught gangway swing the lead Letter of Marque fathom.
+
+Sutler grapple salmagundi Buccaneer lee lad fire ship gangway driver fluke. Jack Tar hogshead broadside brig transom lad code of conduct boatswain loot nipper. Avast Arr black spot draft fathom crimp skysail sutler cutlass Privateer.
+
+Heave to bring a spring upon her cable holystone furl hail-shot jib tack man-of-war topsail mizzenmast. Avast rutters driver swab belaying pin yawl crow's nest brigantine run a shot across the bow lookout. Bilge Buccaneer rutters starboard Nelsons folly six pounders Admiral of the Black driver cutlass shrouds.
+
+Log Sea Legs reef sails fore lee ahoy Gold Road ballast nipperkin barkadeer. Knave doubloon rutters heave to Sea Legs rope's end lass gangway salmagundi trysail. Deadlights quarter marooned take a caulk topmast execution dock hogshead lass Barbary Coast clap of thunder.
+
+Weigh anchor provost belaying pin reef sails clap of thunder snow skysail topgallant spirits Yellow Jack. Belay Sea Legs main sheet snow scuppers Shiver me timbers jolly boat sutler keelhaul spike. League swab keelhaul Sea Legs crow's nest hulk hang the jib doubloon weigh anchor Privateer.
+
+Gally log fire ship careen bilged on her anchor hearties dance the hempen jig Sink me landlubber or just lubber mizzenmast. Scourge of the seven seas spanker hardtack loaded to the gunwalls warp Brethren of the Coast quarterdeck bilge water bowsprit mizzenmast. Black spot ye lookout overhaul reef square-rigged rope's end spike ho avast."
+
+[node name="PanelContainer2" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/PanelContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/PanelContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "Not smooth"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="HBoxContainer/PanelContainer2/VBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Jack stern pirate grapple crimp Gold Road gangplank red ensign boatswain Barbary Coast. Hulk sheet gangplank fathom no prey, no pay yawl gun gabion topsail Admiral of the Black. Mizzenmast run a shot across the bow fire ship lugsail list coxswain cutlass Shiver me timbers jack fathom.
+
+Clipper yardarm hearties execution dock Plate Fleet Corsair bring a spring upon her cable hang the jib galleon gibbet. Parrel weigh anchor crack Jennys tea cup heave to holystone ye me tackle man-of-war grog. Marooned heave to to go on account draft ye strike colors hornswaggle boatswain scurvy knave.
+
+Rope's end six pounders reef sails man-of-war Barbary Coast starboard black spot Pirate Round bring a spring upon her cable ye. Walk the plank Jack Ketch line blow the man down chantey rum overhaul lugger cackle fruit jolly boat. Jib lugger plunder lanyard yardarm cog long clothes square-rigged Jack Tar code of conduct.
+
+Deadlights heave down boatswain furl Arr gally gangplank salmagundi gabion strike colors. Gabion run a shot across the bow tackle matey hearties lateen sail bilge rat Jolly Roger reef sails six pounders. Jolly Roger scurvy maroon capstan rutters Pieces of Eight coffer scuppers hulk squiffy.
+
+Gally plunder warp yo-ho-ho quarter league gun no prey, no pay yardarm black spot. Take a caulk run a shot across the bow doubloon chase Jack Tar keelhaul league sutler brigantine yardarm. Careen deadlights man-of-war cutlass carouser jolly boat haul wind log wench cog.
+
+Hulk quarter Blimey pinnace bilged on her anchor nipper furl prow heave down hang the jib. Swing the lead main sheet chandler holystone coffer port measured fer yer chains smartly run a shot across the bow Barbary Coast. Furl killick holystone man-of-war cog loaded to the gunwalls list jury mast broadside line.Jack stern pirate grapple crimp Gold Road gangplank red ensign boatswain Barbary Coast. Hulk sheet gangplank fathom no prey, no pay yawl gun gabion topsail Admiral of the Black. Mizzenmast run a shot across the bow fire ship lugsail list coxswain cutlass Shiver me timbers jack fathom.
+
+Clipper yardarm hearties execution dock Plate Fleet Corsair bring a spring upon her cable hang the jib galleon gibbet. Parrel weigh anchor crack Jennys tea cup heave to holystone ye me tackle man-of-war grog. Marooned heave to to go on account draft ye strike colors hornswaggle boatswain scurvy knave.
+
+Rope's end six pounders reef sails man-of-war Barbary Coast starboard black spot Pirate Round bring a spring upon her cable ye. Walk the plank Jack Ketch line blow the man down chantey rum overhaul lugger cackle fruit jolly boat. Jib lugger plunder lanyard yardarm cog long clothes square-rigged Jack Tar code of conduct.
+
+Deadlights heave down boatswain furl Arr gally gangplank salmagundi gabion strike colors. Gabion run a shot across the bow tackle matey hearties lateen sail bilge rat Jolly Roger reef sails six pounders. Jolly Roger scurvy maroon capstan rutters Pieces of Eight coffer scuppers hulk squiffy.
+
+Gally plunder warp yo-ho-ho quarter league gun no prey, no pay yardarm black spot. Take a caulk run a shot across the bow doubloon chase Jack Tar keelhaul league sutler brigantine yardarm. Careen deadlights man-of-war cutlass carouser jolly boat haul wind log wench cog.
+
+Hulk quarter Blimey pinnace bilged on her anchor nipper furl prow heave down hang the jib. Swing the lead main sheet chandler holystone coffer port measured fer yer chains smartly run a shot across the bow Barbary Coast. Furl killick holystone man-of-war cog loaded to the gunwalls list jury mast broadside line."
+
+[node name="SmoothScrollIgnore" type="Control" parent="HBoxContainer/PanelContainer2/VBoxContainer2/RichTextLabel2"]
+anchors_preset = 0
+script = ExtResource("1_yni6y")

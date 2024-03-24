@@ -3,7 +3,7 @@
 class_name SmoothScroll extends Control
 
 
-## Controls how fast the smoothing animation is.
+## Controls how fast the smoothing animation is. The bigger, the faster.
 @export var scroll_speed: float = 20.0
 ## Controls how big of a step single scroll will move.
 @export var scroll_step: float = 1.0
@@ -15,11 +15,17 @@ var _last_pos_global: Vector2
 var _needed_scroll: Vector2  # The amount that hasn't been scrolled yet.
 var _last_event: InputEventMouseButton  # Last event to copy properties from.
 
-@onready var _window := get_window()
+var _window: Window
 
 
 func _enter_tree() -> void:
-	process_mode = Node.PROCESS_MODE_ALWAYS
+	_window  = get_window()
+	mouse_filter = Control.MOUSE_FILTER_IGNORE
+	if _window.is_embedded():
+		printerr("Window %s is embedded, smooth scroll will not work." % _window.name)
+		process_mode = Node.PROCESS_MODE_DISABLED
+	else:
+		process_mode = Node.PROCESS_MODE_ALWAYS
 
 
 func _input(event: InputEvent) -> void:
@@ -36,9 +42,10 @@ func _input(event: InputEvent) -> void:
 		
 		# Detect if input doesn't have smooth factor.
 		# That is when the factor is a multiple of 1, an integer.
-		if roundf(event.factor) == event.factor:
+		if not (event.button_mask & 2048) and roundf(event.factor) == event.factor:
 			_last_event = event
-			accept_event()
+			event.factor = 0
+			event.button_mask |= 4096
 			
 			# Calculate the step factor.
 			# The event factor can be higher than 1, which has to be taken into account.
@@ -56,7 +63,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _process(delta: float) -> void:
-	if _needed_scroll.length_squared() < 0.001:  # Dont always process, to save cpu.
+	if _needed_scroll.length_squared() < 0.0001:  # Dont always process, to save cpu.
 		return
 	
 	var event := _last_event  # Copy properties of last scroll event.
@@ -97,10 +104,12 @@ func _process(delta: float) -> void:
 	event.position = _last_pos * _window.content_scale_factor
 	event.global_position = _last_pos_global
 	
+	event.button_mask |= 2048
+	
 	# Send fake input event with factor.
 	Input.parse_input_event(event)
-	event = event.duplicate()
 	# Disable pressed state.
+	event = event.duplicate()
 	event.button_mask &= ~0b1111000
 	event.pressed = false
 	Input.parse_input_event(event)
